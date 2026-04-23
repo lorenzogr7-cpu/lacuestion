@@ -238,12 +238,15 @@
             color: #000;
         }
 
-        /* MENÚ PRINCIPAL - DISTRIBUCIÓN 9:16 COMPACTA */
+        /* MENÚ PRINCIPAL - 9:16 CENTRADO EN ZONA SEGURA */
         .main-menu-terminal {
             background: #000 !important;
             font-family: monospace;
             width: 100%;
-            height: 100%;
+            min-height: -webkit-fill-available; /* for mobile */
+            height: 100vh;
+            height: -moz-available;
+            height: stretch;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -253,13 +256,12 @@
         .menu-content {
             display: flex;
             flex-direction: column;
-            justify-content: center;   /* centra todo el bloque verticalmente */
+            justify-content: center;
             align-items: center;
             width: 100%;
             max-width: 320px;
-            height: auto;             /* se adapta al contenido */
             margin: 0 auto;
-            gap: 2vh;                /* espacio entre título, botones y frase */
+            gap: 2vh;   /* espacio uniforme entre elementos */
         }
         .main-menu-terminal h1 {
             font-family: 'Albert Sans', sans-serif;
@@ -315,7 +317,6 @@
             }
             .main-menu-terminal h1 {
                 font-size: 2rem;
-                margin: 0;
             }
             .options-terminal {
                 gap: 1vh;
