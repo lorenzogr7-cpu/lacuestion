@@ -238,7 +238,7 @@
             color: #000;
         }
 
-        /* MENÚ PRINCIPAL - DISTRIBUCIÓN 9:16 */
+        /* MENÚ PRINCIPAL - DISTRIBUCIÓN 9:16 COMPACTA */
         .main-menu-terminal {
             background: #000 !important;
             font-family: monospace;
@@ -248,17 +248,18 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            padding: 4vh 1rem;
+            padding: 2vh 1rem;
         }
         .menu-content {
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
+            justify-content: center;   /* centra todo el bloque verticalmente */
             align-items: center;
             width: 100%;
             max-width: 320px;
-            height: 85vh;          /* Usa el alto de la pantalla proporcionalmente */
+            height: auto;             /* se adapta al contenido */
             margin: 0 auto;
+            gap: 2vh;                /* espacio entre título, botones y frase */
         }
         .main-menu-terminal h1 {
             font-family: 'Albert Sans', sans-serif;
@@ -266,7 +267,7 @@
             font-weight: 900;
             letter-spacing: 2px;
             color: #fff;
-            margin: 0 0 2vh 0;
+            margin: 0;
             border-bottom: 2px solid #fff;
             display: inline-block;
             padding-bottom: 0.3rem;
@@ -275,10 +276,10 @@
         .options-terminal {
             display: flex;
             flex-direction: column;
-            gap: 1.8vh;
+            gap: 1.2vh;
             align-items: center;
             width: 100%;
-            margin: 0 auto;
+            margin: 0;
         }
         .option-terminal {
             background: #000;
@@ -294,7 +295,7 @@
             margin: 0;
         }
         .secret-phrase {
-            margin-top: 2vh;
+            margin: 0;
             font-size: 0.7rem;
             font-style: italic;
             color: #aaa;
@@ -307,18 +308,17 @@
         /* Ajustes para orientación vertical (9:16 nativo) */
         @media (max-aspect-ratio: 1/1) and (orientation: portrait) {
             .main-menu-terminal {
-                padding: 2vh 1rem;
+                padding: 1vh 1rem;
             }
             .menu-content {
-                height: 90vh;
-                max-width: 280px;
+                gap: 1.5vh;
             }
             .main-menu-terminal h1 {
                 font-size: 2rem;
-                margin-bottom: 1.5vh;
+                margin: 0;
             }
             .options-terminal {
-                gap: 1.2vh;
+                gap: 1vh;
             }
             .option-terminal {
                 padding: 0.8vh 0.3rem;
@@ -327,7 +327,6 @@
                 font-size: 0.85rem;
             }
             .secret-phrase {
-                margin-top: 1.5vh;
                 font-size: 0.65rem;
             }
         }
