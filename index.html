@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, viewport-fit=cover">
     <title>LA CUESTIÓN · terminal</title>
     <link href="https://fonts.googleapis.com/css2?family=Albert+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
@@ -18,6 +18,7 @@
             min-height: 100vh;
             overflow-x: hidden;
             transition: background 0.3s;
+            touch-action: manipulation; /* mejorar respuesta táctil */
         }
 
         /* MODO PASTO OSCURO (SEGA) */
@@ -107,7 +108,7 @@
             background: #000;
             transition: opacity 0.4s ease;
             overflow-y: auto;
-            padding: 1.5rem;
+            padding: 1rem;
         }
 
         .hidden {
@@ -116,11 +117,11 @@
             visibility: hidden;
         }
 
-        /* BOTÓN ANALÓGICO ANTIGUO (estilo vintage) */
+        /* BOTÓN ANALÓGICO ANTIGUO */
         .light-switch {
             background: radial-gradient(circle at 35% 30%, #3a3a3a, #0f0f0f);
-            width: 260px;
-            height: 260px;
+            width: 220px;
+            height: 220px;
             border-radius: 50%;
             box-shadow: 0 10px 20px rgba(0,0,0,0.5), inset 0 -5px 0 #2a2a2a, inset 0 2px 4px rgba(255,255,255,0.2);
             display: flex;
@@ -130,7 +131,7 @@
             transition: all 0.1s linear;
             text-align: center;
             font-weight: 700;
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             color: #e0e0e0;
             font-family: 'Courier New', monospace;
             text-transform: uppercase;
@@ -146,7 +147,7 @@
         .terminal-loader {
             background: #000;
             justify-content: flex-start;
-            padding-top: 1rem;
+            padding-top: 0.5rem;
         }
         .terminal-output {
             width: 100%;
@@ -154,21 +155,20 @@
             margin: 0 auto;
             background: #000;
             color: #0f0;
-            font-size: 0.85rem;
-            line-height: 1.4;
+            font-size: 0.8rem;
+            line-height: 1.3;
             font-family: monospace;
             white-space: pre-wrap;
             word-break: break-word;
             text-align: left;
-            padding: 1rem;
+            padding: 0.8rem;
             height: 70vh;
             overflow-y: auto;
-            scroll-behavior: auto;
         }
         .terminal-line {
-            margin-bottom: 0.2rem;
+            margin-bottom: 0.15rem;
             opacity: 0;
-            animation: appear 0.03s forwards;
+            animation: appear 0.02s forwards;
         }
         .terminal-line.highlight {
             color: #fff;
@@ -177,20 +177,20 @@
             background: rgba(255,255,255,0.1);
         }
         @keyframes appear {
-            from { opacity: 0; transform: translateY(3px); }
+            from { opacity: 0; transform: translateY(2px); }
             to { opacity: 1; transform: translateY(0); }
         }
         .progress-container {
-            margin-top: 1.5rem;
+            margin-top: 1rem;
             width: 80%;
-            max-width: 500px;
+            max-width: 400px;
             border: 1px solid #0f0;
             background: #000;
             padding: 2px;
         }
         .progress-bar {
             width: 0%;
-            height: 24px;
+            height: 20px;
             background: #0f0;
             transition: width 0.05s linear;
         }
@@ -198,7 +198,7 @@
             color: #0f0;
             font-family: monospace;
             margin-top: 0.5rem;
-            font-size: 1rem;
+            font-size: 0.9rem;
             letter-spacing: 1px;
         }
 
@@ -206,18 +206,18 @@
             background: #000;
             color: #fff;
             font-family: 'Courier New', monospace;
-            font-size: 1.4rem;
+            font-size: 1.2rem;
             text-align: center;
-            line-height: 1.6;
+            line-height: 1.5;
         }
         .poem-text {
-            max-width: 750px;
+            max-width: 85%;
             white-space: pre-wrap;
             border-right: 2px solid #fff;
             padding: 1rem;
         }
         .entrar-btn {
-            margin-top: 50px;
+            margin-top: 40px;
             background: transparent;
             border: 1px solid #fff;
             color: #fff;
@@ -240,56 +240,47 @@
         }
         .main-menu-terminal h1 {
             font-family: 'Albert Sans', sans-serif;
-            font-size: 4.5rem;
+            font-size: 3rem;
             font-weight: 900;
-            letter-spacing: 4px;
+            letter-spacing: 3px;
             color: #fff;
-            margin-bottom: 3rem;
+            margin-bottom: 2rem;
             border-bottom: 2px solid #fff;
             display: inline-block;
-            padding-bottom: 0.5rem;
+            padding-bottom: 0.3rem;
             text-shadow: 0 0 8px rgba(255,255,255,0.5);
         }
         .options-terminal {
             display: flex;
             flex-direction: column;
-            gap: 1.2rem;
+            gap: 1rem;
             align-items: center;
             width: 100%;
-            max-width: 300px;
+            max-width: 260px;
             margin: 0 auto;
         }
         .option-terminal {
             background: #000;
             border: 1px solid #fff;
-            padding: 0.8rem 1rem;
+            padding: 0.8rem;
             width: 100%;
             cursor: pointer;
             transition: 0.15s linear;
             text-align: center;
         }
-        .option-terminal:hover {
-            background: #fff;
-            color: #000;
-        }
         .option-terminal h3 {
-            font-size: 1rem;
+            font-size: 0.95rem;
             font-weight: normal;
-            margin-bottom: 0.2rem;
         }
         .secret-phrase {
-            margin-top: 3rem;
-            font-size: 0.8rem;
+            margin-top: 2rem;
+            font-size: 0.7rem;
             font-style: italic;
             color: #aaa;
             text-align: center;
             cursor: pointer;
-            transition: 0.1s;
-            max-width: 280px;
-            line-height: 1.4;
-        }
-        .secret-phrase:hover {
-            color: #0f0;
+            max-width: 260px;
+            line-height: 1.3;
         }
 
         /* EFECTO GLITCH MEJORADO */
@@ -301,26 +292,20 @@
             height: 100%;
             z-index: 2000;
             pointer-events: none;
-            animation: glitch-complex 1.2s steps(2, end) forwards;
+            animation: glitch-complex 1s steps(2, end) forwards;
         }
         @keyframes glitch-complex {
             0% { opacity: 0; background: transparent; }
-            5% { opacity: 1; background: #000; box-shadow: 0 0 0 0 white; }
-            10% { background: #000; transform: translate(8px, -4px) skewX(5deg); box-shadow: 0 0 20px 5px white; }
-            15% { transform: translate(-8px, 3px) skewX(-5deg); background: #f0f; mix-blend-mode: difference; }
-            20% { transform: translate(12px, -2px) skewX(8deg); background: #0ff; box-shadow: 0 0 30px 10px cyan; }
-            25% { transform: translate(-12px, 5px) skewX(-8deg); background: #f00; }
-            30% { transform: translate(5px, -5px) skewX(3deg); background: #000; box-shadow: 0 0 40px 15px white; }
-            35% { transform: translate(-5px, 2px) skewX(-3deg); background: #fff; }
-            40% { transform: translate(15px, -1px) skewX(10deg); background: #000; filter: blur(2px); }
-            45% { transform: translate(-15px, 6px) skewX(-10deg); background: #0f0; }
-            50% { transform: translate(0, 0) skewX(0); background: #000; filter: blur(0px); box-shadow: 0 0 0 0; }
-            55% { transform: translate(6px, -3px) skewX(4deg); background: #fff; opacity: 0.9; }
-            60% { transform: translate(-6px, 4px) skewX(-4deg); background: #000; filter: blur(1px); }
-            70% { transform: translate(3px, -2px) skewX(2deg); background: #f0f; mix-blend-mode: normal; }
-            80% { transform: translate(-3px, 1px) skewX(-2deg); background: #000; filter: blur(0px); }
-            90% { transform: translate(0, 0); background: #000; opacity: 0.8; }
-            100% { opacity: 0; visibility: hidden; background: transparent; }
+            5% { opacity: 1; background: #000; transform: translate(0,0); }
+            10% { background: #000; transform: translate(6px, -3px) skewX(3deg); }
+            15% { transform: translate(-6px, 2px) skewX(-3deg); background: #f0f; mix-blend-mode: difference; }
+            20% { transform: translate(10px, -2px) skewX(5deg); background: #0ff; }
+            30% { transform: translate(-5px, 3px) skewX(-2deg); background: #000; }
+            40% { transform: translate(5px, -1px) skewX(2deg); background: #fff; }
+            50% { transform: translate(-2px, 1px) skewX(-1deg); background: #000; filter: blur(1px); }
+            60% { transform: translate(2px, -2px) skewX(1deg); background: #f00; }
+            70% { transform: translate(0,0); background: #000; filter: blur(0px); }
+            100% { opacity: 0; visibility: hidden; }
         }
 
         .noise-overlay {
@@ -329,7 +314,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: repeating-radial-gradient(circle at 20% 30%, rgba(255,255,255,0.1) 2px, transparent 3px);
+            background: repeating-radial-gradient(circle at 20% 30%, rgba(255,255,255,0.08) 2px, transparent 3px);
             pointer-events: none;
             z-index: 2001;
             animation: noiseFlicker 0.08s infinite;
@@ -357,6 +342,7 @@
             flex-direction: column;
             animation: fadeIn 0.2s;
             cursor: pointer;
+            padding: 1rem;
         }
         @keyframes fadeIn {
             from { opacity: 0; }
@@ -365,159 +351,81 @@
         .cascade-content {
             background: #000;
             border: 1px solid #fff;
-            padding: 2rem;
+            padding: 1.5rem;
             max-width: 90%;
-            width: 450px;
+            width: 400px;
             cursor: default;
             max-height: 80vh;
             overflow-y: auto;
         }
         .cascade-content h2 {
-            font-size: 1.4rem;
-            font-weight: normal;
-            margin-bottom: 1rem;
-            font-family: monospace;
+            font-size: 1.3rem;
         }
         .cascade-content button {
             background: #fff;
             border: none;
-            padding: 8px 20px;
-            font-size: 0.9rem;
+            padding: 6px 16px;
+            font-size: 0.8rem;
             font-family: monospace;
-            margin-top: 20px;
+            margin-top: 18px;
             cursor: pointer;
             color: #000;
         }
-        .cascade-content button:hover {
-            background: #ccc;
-        }
         .countdown {
-            font-size: 1.2rem;
-            margin: 0.5rem 0 1rem 0;
-            font-family: monospace;
+            font-size: 1.1rem;
+            margin: 0.5rem 0;
             color: #aaa;
         }
         .maps-link {
-            color: #fff;
-            text-decoration: underline;
-            display: inline-block;
-            margin: 10px;
-            font-size: 1rem;
+            font-size: 0.9rem;
         }
         input {
             background: #111;
             border: 1px solid #fff;
-            padding: 10px;
+            padding: 8px;
             width: 80%;
-            margin: 10px 0;
-            color: #fff;
-            font-family: monospace;
-        }
-        .store-name-btn {
-            background: #fff;
-            color: #000;
-            border: none;
-            padding: 6px 14px;
-            cursor: pointer;
-            font-family: monospace;
-        }
-        .wa-button {
-            background: #075E54;
-            color: #fff;
-            padding: 8px 18px;
-            text-decoration: none;
-            display: inline-block;
-            margin: 10px 0;
-        }
-        .participant-list {
-            text-align: left;
-            margin-top: 1rem;
-            max-height: 300px;
-            overflow-y: auto;
-            border-top: 1px solid #333;
-            padding-top: 1rem;
-        }
-        .participant-item {
-            font-family: monospace;
+            margin: 8px 0;
             font-size: 0.8rem;
-            margin-bottom: 0.4rem;
-            border-bottom: 1px dotted #333;
-            padding-bottom: 0.2rem;
         }
-        .big-emoji {
-            font-size: 4rem;
-            margin: 1rem;
-            text-shadow: 0 0 10px #fff;
+        .store-name-btn, .wa-button {
+            font-size: 0.8rem;
+            padding: 6px 12px;
         }
         .transfer-highlight {
-            font-size: 1.4rem;
-            font-weight: bold;
-            background: #222;
-            padding: 0.5rem;
-            border-radius: 8px;
-            margin: 1rem 0;
-        }
-        .transfer-highlight code {
-            font-size: 1.3rem;
-            background: #111;
-            padding: 0.2rem 0.5rem;
+            font-size: 1.2rem;
+            padding: 0.4rem;
         }
         .copy-button {
-            background: transparent;
-            border: none;
-            color: #0f0;
-            cursor: pointer;
-            font-family: monospace;
-            font-size: 0.7rem;
-            margin-left: 6px;
-            text-decoration: underline;
-            padding: 0;
-        }
-        .copy-button:hover {
-            color: #fff;
-        }
-        .copy-feedback {
             font-size: 0.65rem;
-            margin-left: 6px;
-            color: #0f0;
         }
-        /* Contenedor para que (Mafalda) quede al lado y no abajo */
         .alias-container {
             white-space: nowrap;
             display: inline-flex;
             align-items: center;
-            gap: 6px;
+            gap: 4px;
             flex-wrap: wrap;
+            justify-content: center;
         }
         .alias-small {
-            font-size: 0.75rem;
-            color: #ccc;
-            font-style: italic;
-            margin-left: 0;
+            font-size: 0.7rem;
         }
         .fecha-grande {
-            font-size: 2.2rem;
-            font-weight: bold;
-            margin-bottom: 0.25rem;
+            font-size: 1.8rem;
         }
         .comentario-bot {
-            font-size: 0.8rem;
-            font-style: italic;
-            color: #aaa;
-            margin-bottom: 0.5rem;
+            font-size: 0.7rem;
         }
         @media (max-width: 650px) {
-            .main-menu-terminal h1 { font-size: 2.5rem; }
-            .poem-text { font-size: 1rem; }
+            .main-menu-terminal h1 { font-size: 2.2rem; }
+            .light-switch { width: 180px; height: 180px; font-size: 1rem; }
             .terminal-output { font-size: 0.7rem; }
-            .transfer-highlight { font-size: 1.1rem; }
-            .big-emoji { font-size: 3rem; }
-            .fecha-grande { font-size: 1.6rem; }
-            .alias-container {
-                white-space: normal;
-                flex-wrap: wrap;
-                justify-content: center;
-            }
+            .poem-text { font-size: 1rem; }
+            .cascade-content { padding: 1rem; width: 90%; }
+            .fecha-grande { font-size: 1.4rem; }
+            .transfer-highlight { font-size: 1rem; }
+            .big-emoji { font-size: 2.5rem; }
+            .option-terminal h3 { font-size: 0.85rem; }
+            .secret-phrase { font-size: 0.65rem; }
         }
     </style>
 </head>
@@ -545,15 +453,12 @@
     <div class="options-terminal">
         <div class="option-terminal" data-option="timeplace">
             <h3>HORA Y LUGAR</h3>
-            <p></p>
         </div>
         <div class="option-terminal" data-option="pista">
             <h3>UNA PISTA?</h3>
-            <p></p>
         </div>
         <div class="option-terminal" data-option="inscripcion">
             <h3>KIERO ESTAR EN LA CUESTIÓN</h3>
-            <p></p>
         </div>
     </div>
     <div id="secretPhrase" class="secret-phrase">
@@ -563,10 +468,10 @@
 
 <script>
     (function(){
-        // ---------- LIMPIAR PARTICIPANTES AL INICIO ----------
+        // Limpiar participantes al inicio
         localStorage.removeItem("cuestion_participantes");
         
-        // ---------- AUDIO: BEAT 8-BITS INDIE a 110 BPM ----------
+        // ---------- AUDIO: BEAT 8-BITS 110 BPM ----------
         const AudioContextClass = window.AudioContext || window.webkitAudioContext;
         let audioCtx = null;
         let beatInterval = null;
@@ -587,56 +492,56 @@
             gain.connect(audioCtx.destination);
             osc.type = 'sine';
             osc.frequency.value = 100;
-            gain.gain.setValueAtTime(0.4, time);
-            gain.gain.exponentialRampToValueAtTime(0.0001, time + 0.15);
+            gain.gain.setValueAtTime(0.35, time);
+            gain.gain.exponentialRampToValueAtTime(0.0001, time + 0.12);
             osc.start(time);
-            osc.stop(time + 0.15);
+            osc.stop(time + 0.12);
             const noise = audioCtx.createBufferSource();
-            const buffer = audioCtx.createBuffer(1, 4096, audioCtx.sampleRate);
+            const buffer = audioCtx.createBuffer(1, 2048, audioCtx.sampleRate);
             const data = buffer.getChannelData(0);
-            for (let i = 0; i < 4096; i++) data[i] = Math.random() * 2 - 1;
+            for (let i = 0; i < 2048; i++) data[i] = Math.random() * 2 - 1;
             noise.buffer = buffer;
             const noiseGain = audioCtx.createGain();
             noise.connect(noiseGain);
             noiseGain.connect(audioCtx.destination);
-            noiseGain.gain.setValueAtTime(0.15, time);
-            noiseGain.gain.exponentialRampToValueAtTime(0.0001, time + 0.05);
+            noiseGain.gain.setValueAtTime(0.1, time);
+            noiseGain.gain.exponentialRampToValueAtTime(0.0001, time + 0.04);
             noise.start(time);
-            noise.stop(time + 0.05);
+            noise.stop(time + 0.04);
         }
         
         function playSnare(time) {
             if (!audioCtx) return;
             const noise = audioCtx.createBufferSource();
-            const buffer = audioCtx.createBuffer(1, 4096, audioCtx.sampleRate);
+            const buffer = audioCtx.createBuffer(1, 2048, audioCtx.sampleRate);
             const data = buffer.getChannelData(0);
-            for (let i = 0; i < 4096; i++) data[i] = Math.random() * 2 - 1;
+            for (let i = 0; i < 2048; i++) data[i] = Math.random() * 2 - 1;
             noise.buffer = buffer;
             const gain = audioCtx.createGain();
             noise.connect(gain);
             gain.connect(audioCtx.destination);
-            gain.gain.setValueAtTime(0.25, time);
-            gain.gain.exponentialRampToValueAtTime(0.0001, time + 0.1);
+            gain.gain.setValueAtTime(0.2, time);
+            gain.gain.exponentialRampToValueAtTime(0.0001, time + 0.08);
             noise.start(time);
-            noise.stop(time + 0.1);
+            noise.stop(time + 0.08);
             const osc = audioCtx.createOscillator();
             const oscGain = audioCtx.createGain();
             osc.connect(oscGain);
             oscGain.connect(audioCtx.destination);
             osc.type = 'triangle';
             osc.frequency.value = 180;
-            oscGain.gain.setValueAtTime(0.1, time);
-            oscGain.gain.exponentialRampToValueAtTime(0.0001, time + 0.08);
+            oscGain.gain.setValueAtTime(0.08, time);
+            oscGain.gain.exponentialRampToValueAtTime(0.0001, time + 0.06);
             osc.start(time);
-            osc.stop(time + 0.08);
+            osc.stop(time + 0.06);
         }
         
         function playHat(time) {
             if (!audioCtx) return;
             const noise = audioCtx.createBufferSource();
-            const buffer = audioCtx.createBuffer(1, 2048, audioCtx.sampleRate);
+            const buffer = audioCtx.createBuffer(1, 1024, audioCtx.sampleRate);
             const data = buffer.getChannelData(0);
-            for (let i = 0; i < 2048; i++) data[i] = Math.random() * 2 - 1;
+            for (let i = 0; i < 1024; i++) data[i] = Math.random() * 2 - 1;
             noise.buffer = buffer;
             const gain = audioCtx.createGain();
             const filter = audioCtx.createBiquadFilter();
@@ -645,10 +550,10 @@
             noise.connect(filter);
             filter.connect(gain);
             gain.connect(audioCtx.destination);
-            gain.gain.setValueAtTime(0.1, time);
-            gain.gain.exponentialRampToValueAtTime(0.0001, time + 0.05);
+            gain.gain.setValueAtTime(0.08, time);
+            gain.gain.exponentialRampToValueAtTime(0.0001, time + 0.04);
             noise.start(time);
-            noise.stop(time + 0.05);
+            noise.stop(time + 0.04);
         }
         
         function start8BitBeat() {
@@ -667,15 +572,11 @@
         }
         
         function stopBeat() {
-            if (beatInterval) {
-                clearInterval(beatInterval);
-                beatInterval = null;
-            }
+            if (beatInterval) clearInterval(beatInterval);
             currentStep = 0;
         }
         
-        // Sonidos auxiliares
-        function playBeep(freq=880, duration=0.06, type='sine') {
+        function playBeep(freq=880, duration=0.05, type='sine') {
             if(!audioCtx) initAudio();
             if(!audioCtx) return;
             const now = audioCtx.currentTime;
@@ -685,7 +586,7 @@
             gain.connect(audioCtx.destination);
             osc.frequency.value = freq;
             osc.type = type;
-            gain.gain.setValueAtTime(0.12, now);
+            gain.gain.setValueAtTime(0.1, now);
             gain.gain.exponentialRampToValueAtTime(0.0001, now + duration);
             osc.start();
             osc.stop(now + duration);
@@ -702,9 +603,9 @@
             osc.type = 'triangle';
             osc.frequency.value = 220;
             gain.gain.setValueAtTime(0.2, now);
-            gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.6);
+            gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.5);
             osc.start();
-            osc.stop(now + 0.6);
+            osc.stop(now + 0.5);
         }
         
         function playGlitchCrash() {
@@ -712,91 +613,79 @@
             if(!audioCtx) return;
             const now = audioCtx.currentTime;
             const noise = audioCtx.createBufferSource();
-            const buffer = audioCtx.createBuffer(1, 8192, audioCtx.sampleRate);
+            const buffer = audioCtx.createBuffer(1, 4096, audioCtx.sampleRate);
             const data = buffer.getChannelData(0);
-            for (let i = 0; i < 8192; i++) data[i] = Math.random() * 2 - 1;
+            for (let i = 0; i < 4096; i++) data[i] = Math.random() * 2 - 1;
             noise.buffer = buffer;
             const gain = audioCtx.createGain();
             noise.connect(gain);
             gain.connect(audioCtx.destination);
             gain.gain.setValueAtTime(0.5, now);
-            gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.4);
+            gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.3);
             noise.start(now);
-            noise.stop(now + 0.4);
+            noise.stop(now + 0.3);
             const osc = audioCtx.createOscillator();
             const oscGain = audioCtx.createGain();
             osc.connect(oscGain);
             oscGain.connect(audioCtx.destination);
             osc.type = 'sawtooth';
             osc.frequency.setValueAtTime(200, now);
-            osc.frequency.exponentialRampToValueAtTime(40, now + 0.3);
+            osc.frequency.exponentialRampToValueAtTime(40, now + 0.25);
             oscGain.gain.setValueAtTime(0.4, now);
-            oscGain.gain.exponentialRampToValueAtTime(0.0001, now + 0.3);
+            oscGain.gain.exponentialRampToValueAtTime(0.0001, now + 0.25);
             osc.start(now);
-            osc.stop(now + 0.3);
+            osc.stop(now + 0.25);
         }
         
-        // ---------- GENERACIÓN DE CÓDIGO FRENÉTICO (sin cambios) ----------
+        // ---------- GENERACIÓN DE CÓDIGO (más corta y rápida) ----------
         const terminalDiv = document.getElementById('terminalOutput');
         const progressFill = document.getElementById('progressBarFill');
         
         const baseMessages = [
-            "[SYSTEM] booting kernel...",
-            "[INFO] loading dependencies",
+            "[SYSTEM] booting...",
+            "[INFO] load deps",
             "> adb devices",
-            "List of devices attached",
             "emulator-5554   device",
-            "[WARN] untrusted connection detected",
+            "[WARN] untrusted connection",
             "> curl -X POST https://api.cuestion.xyz/init",
             "HTTP/1.1 200 OK",
             "> process inject",
-            ">> memory address 0x7FFF2C",
-            "[!] unknown process: cuestion_daemon",
+            ">> memory 0x7FFF2C",
+            "[!] unknown: cuestion_daemon",
             "> cat /etc/cuestion.conf",
             "cipher = aes-256-gcm",
-            "status = pending",
             "> sudo ./start_ritual.sh",
-            "[+] ejecutando protocolo...",
+            "[+] ejecutando...",
             "LA CUESTIÓN ESTÁ SUCEDIENDO",
-            ":: decodificando mensaje ::" ,
             "> logcat -s CUESTION",
-            "D/CUESTION: evento próximo",
             "LA CUESTIÓN ESTÁ SUCEDIENDO",
-            "> grep 'secreto' /var/log/syslog",
-            "LA CUESTIÓN ESTÁ SUCEDIENDO",
-            "[ERROR] fallo al sincronizar, reintentando",
+            "[ERROR] sync fail, retry",
             "> ping cuestion.xyz",
-            "64 bytes from 10.0.0.1: time=42ms",
+            "64 bytes from 10.0.0.1",
             "LA CUESTIÓN ESTÁ SUCEDIENDO",
-            "[CRITICAL] no se puede detener el proceso",
+            "[CRITICAL] cannot stop",
             "> systemctl status cuestion",
-            "● cuestion.service - loaded (activating)",
+            "● cuestion.service - active",
             "LA CUESTIÓN ESTÁ SUCEDIENDO",
-            "[NET] paquete inesperado :: origen desconocido",
-            ">> inyección de código completada",
+            ">> inyección completada",
             "LA CUESTIÓN ESTÁ SUCEDIENDO",
-            "> chmod +x cuestion",
-            "> ./cuestion --reveal",
-            "LA CUESTIÓN ESTÁ SUCEDIENDO",
-            "[ERROR] kernel panic: unable to handle page fault",
-            "> reiniciando proceso en 3...",
-            "> reiniciando proceso en 2...",
-            "> reiniciando proceso en 1...",
+            "[ERROR] kernel panic",
+            "> reiniciando...",
             "[SYSTEM] reboot --force",
             "LA CUESTIÓN ESTÁ SUCEDIENDO",
-            "> dmesg | tail -20",
             "[CRASH] dump complete",
             "LA CUESTIÓN ESTÁ SUCEDIENDO"
         ];
         
         let fullLog = [];
-        for (let i = 0; i < 8; i++) fullLog.push(...baseMessages);
-        for (let i = 0; i < 80; i++) {
+        for (let i = 0; i < 4; i++) fullLog.push(...baseMessages);
+        for (let i = 0; i < 40; i++) {
             const r = Math.random();
-            if (r < 0.4) fullLog.push(`[${Math.floor(Math.random()*9999)}] LA CUESTIÓN ESTÁ SUCEDIENDO`);
-            else if (r < 0.7) fullLog.push(`[ERROR] código ${Math.floor(Math.random()*500)} - fallo sector ${Math.floor(Math.random()*100)}`);
-            else fullLog.push(`> ${Math.random().toString(36).substring(7)} --force`);
+            if (r < 0.4) fullLog.push(`[${Math.floor(Math.random()*999)}] LA CUESTIÓN ESTÁ SUCEDIENDO`);
+            else if (r < 0.7) fullLog.push(`[ERROR] código ${Math.floor(Math.random()*300)}`);
+            else fullLog.push(`> ${Math.random().toString(36).substring(5)}`);
         }
+        // Mezcla ligera
         for (let i = fullLog.length - 1; i > 0; i--) {
             if (Math.random() > 0.8) {
                 const j = Math.floor(Math.random() * (i + 1));
@@ -827,17 +716,17 @@
                     progressFill.style.width = progress + '%';
                     
                     if (lineText.includes("[ERROR]") || lineText.includes("[CRITICAL]") || lineText.includes("[CRASH]")) {
-                        if (audioCtx && Math.random() > 0.7) playBeep(120, 0.08, 'square');
+                        if (audioCtx && Math.random() > 0.7) playBeep(120, 0.05, 'square');
                     } else if (audioCtx && Math.random() > 0.85) {
-                        playBeep(1800, 0.01, 'sine');
+                        playBeep(1800, 0.008, 'sine');
                     }
-                    const delay = 10 + Math.random() * 30;
+                    const delay = 8 + Math.random() * 18; // más rápido
                     loadingInterval = setTimeout(addLine, delay);
                 } else {
                     clearTimeout(loadingInterval);
                     progressFill.style.width = '100%';
-                    playBeep(440, 0.3, 'sine');
-                    setTimeout(() => { if (onComplete) onComplete(); }, 200);
+                    playBeep(440, 0.2, 'sine');
+                    setTimeout(() => { if (onComplete) onComplete(); }, 150);
                 }
             }
             addLine();
@@ -873,14 +762,14 @@ le robé una noche.`;
                 setTimeout(() => {
                     entrarBtn.classList.remove('hidden');
                     playMysterious();
-                }, 600);
+                }, 500);
                 return;
             }
             const line = poemLines[currentLineIndex];
             if (line === "") {
                 poemDiv.innerHTML += "<br><br>";
                 currentLineIndex++;
-                poemTimeout = setTimeout(typeNextLine, 1000);
+                poemTimeout = setTimeout(typeNextLine, 900);
                 return;
             }
             currentCharIndex = 0;
@@ -888,15 +777,15 @@ le robé una noche.`;
                 if (currentCharIndex < line.length) {
                     poemDiv.innerHTML += line.charAt(currentCharIndex);
                     currentCharIndex++;
-                    if (audioCtx && Math.random() > 0.6) playBeep(1200, 0.03, 'sine');
-                    poemTimeout = setTimeout(typeChar, 90);
+                    if (audioCtx && Math.random() > 0.7) playBeep(1200, 0.02, 'sine');
+                    poemTimeout = setTimeout(typeChar, 80);
                 } else {
                     poemDiv.innerHTML += "<br>";
                     currentLineIndex++;
-                    let pausa = 1200;
+                    let pausa = 1000;
                     if (!pausaExtraHecha && line.trim() === "y al final,") {
                         pausaExtraHecha = true;
-                        pausa = 2000;
+                        pausa = 1800;
                     }
                     poemTimeout = setTimeout(typeNextLine, pausa);
                 }
@@ -904,7 +793,7 @@ le robé una noche.`;
             typeChar();
         }
         
-        // ---------- FLUJO PRINCIPAL ----------
+        // ---------- FLUJO ----------
         const lightScreen = document.getElementById('lightScreen');
         const lightBtn = document.getElementById('lightSwitchBtn');
         const loadingScreenElem = document.getElementById('loadingScreen');
@@ -913,7 +802,7 @@ le robé una noche.`;
         
         lightBtn.addEventListener('click', async (e) => {
             if(audioCtx && audioCtx.state !== 'running') await audioCtx.resume();
-            playBeep(300, 0.12, 'triangle');
+            playBeep(300, 0.1, 'triangle');
             lightScreen.classList.add('hidden');
             loadingScreenElem.classList.remove('hidden');
             
@@ -934,14 +823,12 @@ le robé una noche.`;
                     blackLayer.remove();
                     poemScreenElem.classList.remove('hidden');
                     startTypewriterPoem();
-                }, 2000);
+                }, 1800);
             });
         });
         
-        // GLITCH MEJORADO AL HACER CLIC EN "ENTRAR"
         entrarBtn.addEventListener('click', () => {
             poemScreenElem.classList.add('hidden');
-            
             playGlitchCrash();
             
             const glitchDiv = document.createElement('div');
@@ -962,28 +849,24 @@ le robé una noche.`;
                 flash.style.backgroundColor = 'white';
                 flash.style.pointerEvents = 'none';
                 flash.style.zIndex = '2002';
-                flash.style.opacity = '0.3';
+                flash.style.opacity = '0.25';
                 document.body.appendChild(flash);
-                setTimeout(() => flash.remove(), 100);
-            }, 120);
+                setTimeout(() => flash.remove(), 80);
+            }, 100);
             
-            setTimeout(() => clearInterval(flashInterval), 1000);
+            setTimeout(() => clearInterval(flashInterval), 900);
             
             setTimeout(() => {
                 glitchDiv.remove();
                 noiseDiv.remove();
                 document.body.classList.add('grass-mode');
                 mainMenuScreenElem.classList.remove('hidden');
-                
-                if (audioCtx && audioCtx.state === 'running') {
-                    start8BitBeat();
-                } else if (audioCtx) {
-                    audioCtx.resume().then(() => start8BitBeat());
-                }
-            }, 1200);
+                if (audioCtx && audioCtx.state === 'running') start8BitBeat();
+                else if (audioCtx) audioCtx.resume().then(() => start8BitBeat());
+            }, 1000);
         });
         
-        // ---------- CAPAS EN CASCADA ----------
+        // ---------- CAPAS ----------
         function showCascade(step, finalCallback) {
             const existing = document.querySelector('.cascade-layer');
             if(existing) existing.remove();
@@ -1017,18 +900,16 @@ le robé una noche.`;
             else if (step === 2) {
                 const targetDate = new Date(new Date().getFullYear(), 4, 9, 20, 0, 0);
                 if (targetDate < new Date()) targetDate.setFullYear(new Date().getFullYear() + 1);
-                
                 function updateCountdown() {
                     const now = new Date();
                     const diff = targetDate - now;
                     if (diff <= 0) return "> EVENTO ACTIVO";
-                    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-                    const hours = Math.floor((diff % (86400000)) / (1000 * 60 * 60));
-                    const mins = Math.floor((diff % (3600000)) / (1000 * 60));
-                    const secs = Math.floor((diff % (60000)) / 1000);
+                    const days = Math.floor(diff / (1000*60*60*24));
+                    const hours = Math.floor((diff % 86400000) / 3600000);
+                    const mins = Math.floor((diff % 3600000) / 60000);
+                    const secs = Math.floor((diff % 60000) / 1000);
                     return `${days}d ${hours}h ${mins}m ${secs}s`;
                 }
-                
                 content.innerHTML = `<div class="comentario-bot">felicitaciones, no sos un bot jajajaja</div>
                                     <div class="fecha-grande">09 DE MAYO - 20HS</div>
                                     <div class="countdown">${updateCountdown()}</div>
@@ -1046,11 +927,10 @@ le robé una noche.`;
                     if(finalCallback) finalCallback();
                 });
             }
-            
             layer.addEventListener('click', (e) => {
                 if (e.target === layer && step === 2) {
-                    const closeBtn = layer.querySelector('.closeCascade');
-                    if (closeBtn) closeBtn.click();
+                    const close = layer.querySelector('.closeCascade');
+                    if (close) close.click();
                 }
             });
         }
@@ -1062,7 +942,7 @@ le robé una noche.`;
             layer.className = 'cascade-layer';
             layer.innerHTML = `<div class="cascade-content">
                 <div class="big-emoji">😰🌞</div>
-                <p style="font-size:1.5rem; font-weight:bold;">adivinate esa</p>
+                <p style="font-size:1.3rem; font-weight:bold;">adivinate esa</p>
                 <button class="closePista">[ CERRAR ]</button>
             </div>`;
             document.body.appendChild(layer);
@@ -1077,9 +957,9 @@ le robé una noche.`;
             layer.innerHTML = `<div class="cascade-content">
                 <h2>KIERO ESTAR EN LA CUESTIÓN</h2>
                 <div class="transfer-highlight">
-                    1. TRANSFERIR <strong style="font-size:1.6rem;">$4.000</strong><br>
+                    1. TRANSFERIR <strong style="font-size:1.4rem;">$4.000</strong><br>
                     <div class="alias-container">
-                        <span style="font-family:monospace;">alias: <code style="background:#000; padding:0.2rem 0.5rem;">ellorenzopa.banda</code></span>
+                        <span style="font-family:monospace;">alias: <code style="background:#000; padding:0.2rem 0.4rem;">ellorenzopa.banda</code></span>
                         <span class="alias-small">(Mafalda)</span>
                     </div>
                     <button id="copyAliasBtn" class="copy-button">[copiar alias]</button>
@@ -1089,7 +969,7 @@ le robé una noche.`;
                 <input type="text" id="nombreParticipante" placeholder="nombre" autocomplete="off">
                 <button id="guardarNombreBtn" class="store-name-btn">[ GUARDAR ]</button>
                 <div id="feedbackNombre" style="font-size:0.7rem; margin-top:5px;"></div>
-                <p><strong>GENTE VIVA HACIENDO COSAS,NOS VEMOS AHI!</strong></p>
+                <p><strong>3. NOS VEMOS AHI!</strong></p>
                 <a id="whatsappLink" href="https://whatsapp.com/channel/0029VbBstkwAYlUR7b7wuI1j" target="_blank" class="wa-button">[ CANAL WHATSAPP ]</a>
                 <button id="closeInscripcion" style="margin-top:20px;">[ CERRAR ]</button>
             </div>`;
@@ -1101,11 +981,11 @@ le robé una noche.`;
             copyBtn.addEventListener('click', () => {
                 navigator.clipboard.writeText(aliasText).then(() => {
                     feedbackSpan.textContent = "✓ copiado";
-                    setTimeout(() => { feedbackSpan.textContent = ""; }, 1500);
-                    playBeep(880, 0.1);
+                    setTimeout(() => feedbackSpan.textContent = "", 1200);
+                    playBeep(880, 0.08);
                 }).catch(() => {
                     feedbackSpan.textContent = "error";
-                    setTimeout(() => { feedbackSpan.textContent = ""; }, 1500);
+                    setTimeout(() => feedbackSpan.textContent = "", 1200);
                 });
             });
             
@@ -1114,27 +994,22 @@ le robé una noche.`;
             const feedback = layer.querySelector('#feedbackNombre');
             guardarBtn.addEventListener('click', () => {
                 const nombre = nombreInput.value.trim();
-                if(nombre === "") {
-                    feedback.innerText = "> nombre requerido";
-                    return;
-                }
+                if(!nombre) { feedback.innerText = "> nombre requerido"; return; }
                 let stored = localStorage.getItem("cuestion_participantes");
                 let participantes = stored ? JSON.parse(stored) : [];
-                participantes.push({nombre: nombre, fecha: new Date().toISOString()});
+                participantes.push({nombre, fecha: new Date().toISOString()});
                 localStorage.setItem("cuestion_participantes", JSON.stringify(participantes));
                 feedback.innerHTML = "✓ guardado";
                 nombreInput.disabled = true;
                 guardarBtn.disabled = true;
-                playBeep(660, 0.2);
+                playBeep(660, 0.15);
             });
             layer.querySelector('#closeInscripcion').addEventListener('click', () => layer.remove());
         }
         
-        // ---------- SECRETOS ----------
-        let secretClickCount = 0;
-        let secretResetTimeout = null;
+        // Secretos
+        let secretClickCount = 0, secretReset = null;
         const secretPhraseDiv = document.getElementById('secretPhrase');
-        
         function showSecretMessage() {
             const existing = document.querySelector('.cascade-layer');
             if(existing) existing.remove();
@@ -1142,28 +1017,26 @@ le robé una noche.`;
             layer.className = 'cascade-layer';
             layer.innerHTML = `<div class="cascade-content">
                 <h2>🏆 PREMIO A LA CURIOSIDAD!!!</h2>
-                <p style="font-size:1.2rem;">el cronograma va a estar en el baño</p>
-                <p style="font-family:monospace; margin-top:1rem;">aaa y los emojis son un nombre</p>
+                <p style="font-size:1rem;">el cronograma va a estar en el baño</p>
+                <p style="font-family:monospace; margin-top:0.5rem;">aaa y los emojis son un nombre</p>
                 <button id="closeSecret">[ CERRAR ]</button>
             </div>`;
             document.body.appendChild(layer);
             layer.querySelector('#closeSecret').addEventListener('click', () => layer.remove());
         }
-        
         secretPhraseDiv.addEventListener('click', () => {
-            if (secretResetTimeout) clearTimeout(secretResetTimeout);
+            if (secretReset) clearTimeout(secretReset);
             secretClickCount++;
-            playBeep(500, 0.05, 'sine');
+            playBeep(500, 0.04);
             if (secretClickCount === 3) {
                 showSecretMessage();
                 secretClickCount = 0;
             } else {
-                secretResetTimeout = setTimeout(() => { secretClickCount = 0; }, 1000);
+                secretReset = setTimeout(() => secretClickCount = 0, 1000);
             }
         });
         
-        let clickCount = 0;
-        let resetTimeout = null;
+        let clickCount = 0, resetTimeout = null;
         const mainTitle = document.getElementById('mainTitle');
         function showParticipantList() {
             const stored = localStorage.getItem("cuestion_participantes");
@@ -1172,18 +1045,17 @@ le robé una noche.`;
             if(existing) existing.remove();
             const layer = document.createElement('div');
             layer.className = 'cascade-layer';
-            let contentHTML = `<div class="cascade-content">
-                <h2>PARTICIPANTES REGISTRADOS</h2>`;
-            if (participantes.length === 0) contentHTML += `<p>No hay nombres guardados aún.</p>`;
+            let html = `<div class="cascade-content"><h2>PARTICIPANTES REGISTRADOS</h2>`;
+            if (!participantes.length) html += `<p>No hay nombres guardados aún.</p>`;
             else {
-                contentHTML += `<div class="participant-list">`;
+                html += `<div class="participant-list">`;
                 participantes.forEach((p, idx) => {
-                    contentHTML += `<div class="participant-item">${idx+1}. ${p.nombre} — ${new Date(p.fecha).toLocaleString()}</div>`;
+                    html += `<div class="participant-item">${idx+1}. ${p.nombre} — ${new Date(p.fecha).toLocaleString()}</div>`;
                 });
-                contentHTML += `</div>`;
+                html += `</div>`;
             }
-            contentHTML += `<button id="closeParticipantList">[ CERRAR ]</button></div>`;
-            layer.innerHTML = contentHTML;
+            html += `<button id="closeParticipantList">[ CERRAR ]</button></div>`;
+            layer.innerHTML = html;
             document.body.appendChild(layer);
             layer.querySelector('#closeParticipantList').addEventListener('click', () => layer.remove());
         }
@@ -1193,24 +1065,20 @@ le robé una noche.`;
             if (clickCount === 5) {
                 showParticipantList();
                 clickCount = 0;
-            } else {
-                resetTimeout = setTimeout(() => { clickCount = 0; }, 1000);
-            }
+            } else resetTimeout = setTimeout(() => clickCount = 0, 1000);
         });
         
         document.querySelectorAll('.option-terminal').forEach(opt => {
             opt.addEventListener('click', () => {
-                const option = opt.getAttribute('data-option');
-                if(option === 'timeplace') showCascade(0, null);
-                else if(option === 'pista') showPista();
-                else if(option === 'inscripcion') showInscripcion();
+                const option = opt.dataset.option;
+                if (option === 'timeplace') showCascade(0, null);
+                else if (option === 'pista') showPista();
+                else if (option === 'inscripcion') showInscripcion();
             });
         });
         
         document.body.addEventListener('click', () => {
-            if(audioCtx && audioCtx.state === 'suspended') {
-                audioCtx.resume();
-            }
+            if (audioCtx && audioCtx.state === 'suspended') audioCtx.resume();
         }, { once: true });
     })();
 </script>
