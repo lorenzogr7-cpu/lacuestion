@@ -3,6 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, viewport-fit=cover">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="LA CUESTIÓN">
+    <meta name="mobile-web-app-capable" content="yes">
     <title>LA CUESTIÓN · terminal</title>
     <link href="https://fonts.googleapis.com/css2?family=Albert+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
@@ -234,7 +238,7 @@
             color: #000;
         }
 
-        /* MENÚ PRINCIPAL: centrado y distribuido correctamente en móvil */
+        /* MENÚ PRINCIPAL: centrado y distribuido */
         .main-menu-terminal {
             background: #000 !important;
             font-family: monospace;
@@ -426,7 +430,6 @@
             font-size: 0.7rem;
         }
         
-        /* Ajustes exclusivos para móvil */
         @media (max-width: 650px) {
             .main-menu-terminal {
                 padding: 0.8rem;
@@ -517,7 +520,36 @@
 
 <script>
     (function(){
-        // Limpiar participantes al inicio
+        // ---------- MANIFEST PWA simple para pantalla completa (si se añade a inicio) ----------
+        const manifestData = {
+            name: "LA CUESTIÓN",
+            short_name: "cuestión",
+            start_url: ".",
+            display: "fullscreen",
+            theme_color: "#000000",
+            background_color: "#000000",
+            icons: []
+        };
+        const manifestBlob = new Blob([JSON.stringify(manifestData)], {type: "application/json"});
+        const manifestURL = URL.createObjectURL(manifestBlob);
+        const manifestLink = document.createElement('link');
+        manifestLink.rel = 'manifest';
+        manifestLink.href = manifestURL;
+        document.head.appendChild(manifestLink);
+        
+        // ---------- FUNCIÓN PARA SOLICITAR PANTALLA COMPLETA ----------
+        function requestFullscreen(element) {
+            const elem = element || document.documentElement;
+            if (elem.requestFullscreen) {
+                elem.requestFullscreen();
+            } else if (elem.webkitRequestFullscreen) { /* Safari */
+                elem.webkitRequestFullscreen();
+            } else if (elem.msRequestFullscreen) {
+                elem.msRequestFullscreen();
+            }
+        }
+        
+        // ---------- LIMPIAR PARTICIPANTES ----------
         localStorage.removeItem("cuestion_participantes");
         
         // ---------- AUDIO: BEAT 8-BITS 110 BPM ----------
@@ -849,6 +881,8 @@ le robé una noche.`;
         const mainMenuScreenElem = document.getElementById('mainMenuScreen');
         
         lightBtn.addEventListener('click', async (e) => {
+            // Solicitar pantalla completa al hacer clic (primer gesto del usuario)
+            requestFullscreen();
             if(audioCtx && audioCtx.state !== 'running') await audioCtx.resume();
             playBeep(300, 0.1, 'triangle');
             lightScreen.classList.add('hidden');
