@@ -1022,12 +1022,12 @@ le robé una noche.`;
             const feedback = layer.querySelector('#feedbackNombre');
             guardarBtn.addEventListener('click', () => {
                 const nombre = nombreInput.value.trim();
-                if(!nombre) { feedback.innerText = "> nombre requerido"; return; }
+                if(!nombre) { feedback.innerText = "> pone tu nombre pueee"; return; }
                 let stored = localStorage.getItem("cuestion_participantes");
                 let participantes = stored ? JSON.parse(stored) : [];
                 participantes.push({nombre, fecha: new Date().toISOString()});
                 localStorage.setItem("cuestion_participantes", JSON.stringify(participantes));
-                feedback.innerHTML = "✓ guardado";
+                feedback.innerHTML = "✓ nombre enviadooo";
                 nombreInput.disabled = true;
                 guardarBtn.disabled = true;
                 playBeep(660, 0.15);
