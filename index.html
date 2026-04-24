@@ -10,6 +10,7 @@
     <title>LA CUESTIÓN · terminal</title>
     <link href="https://fonts.googleapis.com/css2?family=Albert+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
+        /* ===== RESET Y GENERAL ===== */
         * {
             margin: 0;
             padding: 0;
@@ -25,7 +26,7 @@
             touch-action: manipulation;
         }
 
-        /* MODO PASTO OSCURO (SEGA) */
+        /* ===== MODO PASTO OSCURO (SEGA) ===== */
         body.grass-mode {
             background: #1a3a1a;
         }
@@ -85,17 +86,18 @@
             color: #1f3b1a;
             border: none;
         }
-        body.grass-mode input {
+        body.grass-mode .cascade-content button:hover {
+            background: #f5e29c;
+        }
+        body.grass-mode input,
+        body.grass-mode .store-name-btn,
+        body.grass-mode .wa-button {
             background: #0f2b0a;
             border-color: #e6c84f;
             color: #f9f7cf;
         }
-        body.grass-mode .store-name-btn,
-        body.grass-mode .wa-button {
-            background: #e6c84f;
-            color: #1f3b1a;
-        }
 
+        /* ===== PANTALLAS ===== */
         .screen {
             position: fixed;
             top: 0;
@@ -111,14 +113,13 @@
             overflow-y: auto;
             padding: 1rem;
         }
-
         .hidden {
             opacity: 0;
             pointer-events: none;
             visibility: hidden;
         }
 
-        /* BOTÓN ANALÓGICO ANTIGUO */
+        /* ===== BOTÓN ANALÓGICO ANTIGUO ===== */
         .light-switch {
             background: radial-gradient(circle at 35% 30%, #3a3a3a, #0f0f0f);
             width: 220px;
@@ -145,7 +146,7 @@
             box-shadow: 0 5px 10px rgba(0,0,0,0.5), inset 0 -2px 0 #2a2a2a;
         }
 
-        /* TERMINAL */
+        /* ===== TERMINAL (CARGA) ===== */
         .terminal-loader {
             background: #000;
             justify-content: flex-start;
@@ -204,7 +205,7 @@
             letter-spacing: 1px;
         }
 
-        /* POESÍA */
+        /* ===== POESÍA ===== */
         .poem-screen {
             background: #000;
             color: #fff;
@@ -235,7 +236,7 @@
             color: #000;
         }
 
-        /* MENÚ PRINCIPAL - CENTRADO Y MAYOR DISTRIBUCIÓN VERTICAL */
+        /* ===== MENÚ PRINCIPAL ===== */
         .main-menu-terminal {
             background: #000 !important;
             font-family: monospace;
@@ -258,7 +259,7 @@
             width: 100%;
             max-width: 360px;
             margin: 0 auto;
-            gap: 4vh;          /* más separación vertical entre bloques */
+            gap: 5vh;          /* separación generosa entre bloques en desktop */
         }
         .main-menu-terminal h1 {
             font-family: 'Albert Sans', sans-serif;
@@ -276,7 +277,7 @@
         .options-terminal {
             display: flex;
             flex-direction: column;
-            gap: 2vh;
+            gap: 2.5vh;
             align-items: center;
             width: 100%;
             margin: 0;
@@ -284,7 +285,7 @@
         .option-terminal {
             background: #000;
             border: 1.5px solid #fff;
-            padding: 1.5vh 1rem;
+            padding: 1.8vh 1rem;
             width: 100%;
             cursor: pointer;
             text-align: center;
@@ -297,7 +298,7 @@
         }
         .secret-phrase {
             margin: 0;
-            font-size: 0.75rem;
+            font-size: 0.8rem;
             font-style: italic;
             color: #aaa;
             text-align: center;
@@ -306,33 +307,35 @@
             line-height: 1.4;
         }
 
-        /* Ajustes para pantallas más verticales */
+        /* ===== Ajustes para móvil (relación 2:3 o más vertical) ===== */
         @media (max-aspect-ratio: 2/3) and (orientation: portrait) {
             .main-menu-terminal {
-                padding: 2vh 1rem;
+                padding: 3vh 1rem;
             }
             .menu-content {
                 max-width: 300px;
-                gap: 3vh;
+                gap: 8vh;           /* MUCHA separación vertical en móvil */
             }
             .main-menu-terminal h1 {
                 font-size: clamp(2.5rem, 11vh, 4rem);
+                margin-bottom: 1rem;
             }
             .options-terminal {
-                gap: 1.8vh;
+                gap: 3vh;           /* más espacio entre botones */
             }
             .option-terminal {
-                padding: 1.2vh 0.8rem;
+                padding: 1.5vh 0.8rem;
             }
             .option-terminal h3 {
                 font-size: 0.9rem;
             }
             .secret-phrase {
                 font-size: 0.7rem;
+                margin-top: 1rem;
             }
         }
 
-        /* GLITCH */
+        /* ===== GLITCH ===== */
         .glitch-overlay {
             position: fixed;
             top: 0;
@@ -356,7 +359,6 @@
             70% { transform: translate(0,0); background: #000; filter: blur(0px); }
             100% { opacity: 0; visibility: hidden; }
         }
-
         .noise-overlay {
             position: fixed;
             top: 0;
@@ -374,7 +376,7 @@
             100% { opacity: 0.2; background-position: -5px -5px; }
         }
 
-        /* MODALES - MEJOR DISTRIBUCIÓN Y EVITAR SOBREPOSICIÓN */
+        /* ===== MODALES MEJOR DISTRIBUCIÓN ===== */
         .cascade-layer {
             position: fixed;
             top: 0;
@@ -882,7 +884,7 @@ le robé una noche.`;
             }, 1000);
         });
         
-        // ---------- CAPAS EN CASCADA (con mejor distribución) ----------
+        // ---------- CAPAS EN CASCADA ----------
         function showCascade(step, finalCallback) {
             const existing = document.querySelector('.cascade-layer');
             if(existing) existing.remove();
@@ -951,7 +953,7 @@ le robé una noche.`;
             });
         }
         
-        // PISTA con emojis mucho más grandes
+        // PISTA
         function showPista() {
             const existing = document.querySelector('.cascade-layer');
             if(existing) existing.remove();
@@ -966,7 +968,7 @@ le robé una noche.`;
             layer.querySelector('.closePista').addEventListener('click', () => layer.remove());
         }
         
-        // INSCRIPCIÓN con mejor distribución
+        // INSCRIPCIÓN
         function showInscripcion() {
             const existing = document.querySelector('.cascade-layer');
             if(existing) existing.remove();
