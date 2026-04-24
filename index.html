@@ -497,7 +497,7 @@
 <body>
 
 <div id="lightScreen" class="screen">
-    <div class="light-switch" id="lightSwitchBtn">> EL ÚLTIMO<br>KE APAGUE LA LUZ</div>
+    <div class="light-switch" id="lightSwitchBtn">> EL ÚLTIMO<br>QUE APAGUE LA LUZ</div>
 </div>
 
 <div id="loadingScreen" class="screen hidden terminal-loader">
@@ -566,13 +566,23 @@
         let audioCtx = null;
         let beatInterval = null;
         let currentStep = 0;
-        let musicShouldBePlaying = false;  // indica si debería sonar la música (menú activo)
+        let musicShouldBePlaying = false;
         
         function initAudio() {
             if (!audioCtx && AudioContextClass) {
                 audioCtx = new AudioContextClass();
             }
             return audioCtx;
+        }
+        
+        // Pequeño "silence" para activar el motor de audio en iOS
+        function primeAudioContext() {
+            if (!audioCtx) return;
+            if (audioCtx.state === 'running') return;
+            const silence = audioCtx.createBufferSource();
+            silence.buffer = audioCtx.createBuffer(1, 1, 22050);
+            silence.connect(audioCtx.destination);
+            silence.start();
         }
         
         function playKick(time) {
@@ -649,7 +659,6 @@
         
         function start8BitBeat() {
             if (!audioCtx) return;
-            // Solo arrancar si el menú está activo y la página es visible
             if (!musicShouldBePlaying) return;
             if (beatInterval) clearInterval(beatInterval);
             currentStep = 0;
@@ -675,14 +684,9 @@
         // Manejo de visibilidad de la página
         function handleVisibilityChange() {
             if (document.hidden) {
-                // Página oculta: detener música si está sonando
-                if (beatInterval) {
-                    stopBeat();
-                }
+                if (beatInterval) stopBeat();
             } else {
-                // Página visible: reanudar música si debe sonar
                 if (musicShouldBePlaying && audioCtx && document.body.classList.contains('grass-mode')) {
-                    // Reanudar contexto si está suspendido
                     if (audioCtx.state === 'suspended') {
                         audioCtx.resume().then(() => start8BitBeat());
                     } else {
@@ -692,10 +696,9 @@
             }
         }
         
-        // Suscribirse al evento de visibilidad
         document.addEventListener('visibilitychange', handleVisibilityChange);
         
-        // Funciones auxiliares de sonido (sin cambios)
+        // Funciones auxiliares de sonido
         function playBeep(freq=880, duration=0.05, type='sine') {
             if(!audioCtx) initAudio();
             if(!audioCtx) return;
@@ -868,7 +871,7 @@ le robé una noche.`;
             typeChar();
         }
         
-        // ---------- FLUJO PRINCIPAL ----------
+        // ---------- FLUJO PRINCIPAL (CON AUDIO ASEGURADO) ----------
         const lightScreen = document.getElementById('lightScreen');
         const lightBtn = document.getElementById('lightSwitchBtn');
         const loadingScreenElem = document.getElementById('loadingScreen');
@@ -877,7 +880,13 @@ le robé una noche.`;
         
         lightBtn.addEventListener('click', async (e) => {
             requestFullscreen();
-            if(audioCtx && audioCtx.state !== 'running') await audioCtx.resume();
+            // INICIALIZAR Y REANUDAR AUDIO FUERZOSAMENTE
+            initAudio();
+            if (audioCtx.state !== 'running') {
+                await audioCtx.resume();
+                // "Silencio" para activar el motor en iOS
+                primeAudioContext();
+            }
             playBeep(300, 0.1, 'triangle');
             lightScreen.classList.add('hidden');
             loadingScreenElem.classList.remove('hidden');
@@ -918,7 +927,6 @@ le robé una noche.`;
                 glitchDiv.remove(); noiseDiv.remove();
                 document.body.classList.add('grass-mode');
                 mainMenuScreenElem.classList.remove('hidden');
-                // Iniciar música si la página está visible
                 musicShouldBePlaying = true;
                 if (!document.hidden && audioCtx) {
                     if (audioCtx.state === 'running') start8BitBeat();
@@ -1138,9 +1146,12 @@ le robé una noche.`;
             });
         });
         
+        // Primer clic global: activar audio (solo para navegadores que lo requieran)
         document.body.addEventListener('click', () => {
-            if (audioCtx && audioCtx.state === 'suspended') audioCtx.resume();
-        }, { once: true });
+            if (audioCtx && audioCtx.state === 'suspended') {
+                audioCtx.resume().then(() => primeAudioContext());
+            }
+        });
     })();
 </script>
 </body>
