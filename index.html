@@ -238,7 +238,7 @@
             color: #000;
         }
 
-        /* MENÚ PRINCIPAL - RELACIÓN 2:3, TÍTULO GRANDE, ELEMENTOS BIEN DISTRIBUIDOS */
+        /* MENÚ PRINCIPAL - DISTRIBUCIÓN VERTICAL CENTRADA SIN EXTREMOS */
         .main-menu-terminal {
             background: #000 !important;
             font-family: monospace;
@@ -249,9 +249,9 @@
             height: stretch;
             display: flex;
             flex-direction: column;
-            justify-content: space-between; /* Distribuye el espacio uniformemente entre título, opciones y frase */
+            justify-content: center;
             align-items: center;
-            padding: 3vh 1.5rem;
+            padding: 4vh 1.5rem;
         }
         .menu-content {
             display: flex;
@@ -259,14 +259,13 @@
             justify-content: center;
             align-items: center;
             width: 100%;
-            max-width: 340px;           /* más ancho para aprovechar mejor */
+            max-width: 340px;
             margin: 0 auto;
-            flex: 1;
-            gap: 3vh;                  /* separación generosa entre bloques */
+            gap: 3vh;          /* separación equilibrada entre bloques */
         }
         .main-menu-terminal h1 {
             font-family: 'Albert Sans', sans-serif;
-            font-size: clamp(3rem, 12vh, 5rem); /* mucho más grande */
+            font-size: clamp(3rem, 12vh, 5rem);
             font-weight: 900;
             letter-spacing: 4px;
             color: #fff;
