@@ -146,7 +146,7 @@
             box-shadow: 0 5px 10px rgba(0,0,0,0.5), inset 0 -2px 0 #2a2a2a;
         }
 
-        /* ===== TERMINAL (CARGA) ===== */
+        /* ===== TERMINAL (CARGA) – OCUPA PANTALLA COMPLETA EN PC ===== */
         .terminal-loader {
             background: #000;
             justify-content: flex-start;
@@ -154,19 +154,27 @@
         }
         .terminal-output {
             width: 100%;
-            max-width: 700px;
+            max-width: 95%;           /* en escritorio ocupa casi todo */
             margin: 0 auto;
             background: #000;
             color: #0f0;
-            font-size: 0.8rem;
+            font-size: clamp(0.8rem, 2vw, 1.1rem); /* texto más grande en PC */
             line-height: 1.3;
             font-family: monospace;
             white-space: pre-wrap;
             word-break: break-word;
             text-align: left;
-            padding: 0.8rem;
-            height: 70vh;
+            padding: 1rem;
+            height: 75vh;             /* ocupa buena parte de la pantalla */
             overflow-y: auto;
+        }
+        /* En móvil limitamos el ancho para que no se vea desbordado */
+        @media (max-width: 768px) {
+            .terminal-output {
+                max-width: 100%;
+                font-size: 0.8rem;
+                height: 70vh;
+            }
         }
         .terminal-line {
             margin-bottom: 0.15rem;
@@ -186,7 +194,7 @@
         .progress-container {
             margin-top: 1rem;
             width: 80%;
-            max-width: 400px;
+            max-width: 600px;         /* un poco más ancho en PC */
             border: 1px solid #0f0;
             background: #000;
             padding: 2px;
@@ -201,7 +209,7 @@
             color: #0f0;
             font-family: monospace;
             margin-top: 0.5rem;
-            font-size: 0.9rem;
+            font-size: 1rem;
             letter-spacing: 1px;
         }
 
@@ -259,7 +267,7 @@
             width: 100%;
             max-width: 360px;
             margin: 0 auto;
-            gap: 5vh;          /* separación generosa entre bloques en desktop */
+            gap: 5vh;
         }
         .main-menu-terminal h1 {
             font-family: 'Albert Sans', sans-serif;
@@ -314,14 +322,14 @@
             }
             .menu-content {
                 max-width: 300px;
-                gap: 8vh;           /* MUCHA separación vertical en móvil */
+                gap: 8vh;
             }
             .main-menu-terminal h1 {
                 font-size: clamp(2.5rem, 11vh, 4rem);
                 margin-bottom: 1rem;
             }
             .options-terminal {
-                gap: 3vh;           /* más espacio entre botones */
+                gap: 3vh;
             }
             .option-terminal {
                 padding: 1.5vh 0.8rem;
@@ -376,7 +384,7 @@
             100% { opacity: 0.2; background-position: -5px -5px; }
         }
 
-        /* ===== MODALES MEJOR DISTRIBUCIÓN ===== */
+        /* ===== MODALES ===== */
         .cascade-layer {
             position: fixed;
             top: 0;
