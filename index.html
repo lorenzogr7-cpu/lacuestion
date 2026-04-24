@@ -85,9 +85,6 @@
             color: #1f3b1a;
             border: none;
         }
-        body.grass-mode .cascade-content button:hover {
-            background: #f5e29c;
-        }
         body.grass-mode input {
             background: #0f2b0a;
             border-color: #e6c84f;
@@ -238,7 +235,7 @@
             color: #000;
         }
 
-        /* MENÚ PRINCIPAL - DISTRIBUCIÓN VERTICAL CENTRADA SIN EXTREMOS */
+        /* MENÚ PRINCIPAL - CENTRADO Y MAYOR DISTRIBUCIÓN VERTICAL */
         .main-menu-terminal {
             background: #000 !important;
             font-family: monospace;
@@ -251,7 +248,7 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            padding: 4vh 1.5rem;
+            padding: 5vh 1.5rem;
         }
         .menu-content {
             display: flex;
@@ -259,13 +256,13 @@
             justify-content: center;
             align-items: center;
             width: 100%;
-            max-width: 340px;
+            max-width: 360px;
             margin: 0 auto;
-            gap: 3vh;          /* separación equilibrada entre bloques */
+            gap: 4vh;          /* más separación vertical entre bloques */
         }
         .main-menu-terminal h1 {
             font-family: 'Albert Sans', sans-serif;
-            font-size: clamp(3rem, 12vh, 5rem);
+            font-size: clamp(3rem, 13vh, 5.5rem);
             font-weight: 900;
             letter-spacing: 4px;
             color: #fff;
@@ -279,7 +276,7 @@
         .options-terminal {
             display: flex;
             flex-direction: column;
-            gap: 1.8vh;
+            gap: 2vh;
             align-items: center;
             width: 100%;
             margin: 0;
@@ -309,23 +306,23 @@
             line-height: 1.4;
         }
 
-        /* Ajustes para pantallas muy verticales (2:3 o más) */
+        /* Ajustes para pantallas más verticales */
         @media (max-aspect-ratio: 2/3) and (orientation: portrait) {
             .main-menu-terminal {
                 padding: 2vh 1rem;
             }
             .menu-content {
                 max-width: 300px;
-                gap: 2.5vh;
+                gap: 3vh;
             }
             .main-menu-terminal h1 {
-                font-size: clamp(2.5rem, 10vh, 4rem);
+                font-size: clamp(2.5rem, 11vh, 4rem);
             }
             .options-terminal {
-                gap: 1.5vh;
+                gap: 1.8vh;
             }
             .option-terminal {
-                padding: 1vh 0.8rem;
+                padding: 1.2vh 0.8rem;
             }
             .option-terminal h3 {
                 font-size: 0.9rem;
@@ -377,7 +374,7 @@
             100% { opacity: 0.2; background-position: -5px -5px; }
         }
 
-        /* MODALES */
+        /* MODALES - MEJOR DISTRIBUCIÓN Y EVITAR SOBREPOSICIÓN */
         .cascade-layer {
             position: fixed;
             top: 0;
@@ -385,7 +382,7 @@
             width: 100%;
             height: 100%;
             background: rgba(0,0,0,0.96);
-            backdrop-filter: blur(1px);
+            backdrop-filter: blur(2px);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -395,7 +392,7 @@
             flex-direction: column;
             animation: fadeIn 0.2s;
             cursor: pointer;
-            padding: 1rem;
+            padding: 1.5rem;
         }
         @keyframes fadeIn {
             from { opacity: 0; }
@@ -404,69 +401,87 @@
         .cascade-content {
             background: #000;
             border: 1px solid #fff;
-            padding: 1.5rem;
+            padding: 2rem;
             max-width: 90%;
-            width: 400px;
+            width: 420px;
             cursor: default;
-            max-height: 80vh;
+            max-height: 85vh;
             overflow-y: auto;
+            line-height: 1.5;
+            word-wrap: break-word;
         }
         .cascade-content h2 {
-            font-size: 1.3rem;
+            font-size: 1.5rem;
+            margin-bottom: 1.2rem;
+        }
+        .cascade-content p {
+            margin: 0.8rem 0;
+            font-size: 1rem;
         }
         .cascade-content button {
             background: #fff;
             border: none;
-            padding: 8px 20px;
-            font-size: 0.8rem;
+            padding: 10px 24px;
+            font-size: 0.9rem;
             font-family: monospace;
-            margin-top: 18px;
+            margin-top: 25px;
             cursor: pointer;
             color: #000;
         }
         .countdown {
-            font-size: 1.1rem;
-            margin: 0.5rem 0;
+            font-size: 1.2rem;
+            margin: 0.8rem 0;
             color: #aaa;
         }
         .maps-link {
-            font-size: 0.9rem;
+            font-size: 1rem;
+            display: inline-block;
+            margin: 12px;
         }
         input {
             background: #111;
             border: 1px solid #fff;
-            padding: 8px;
+            padding: 10px;
             width: 80%;
-            margin: 8px 0;
-            font-size: 0.8rem;
+            margin: 12px 0;
+            font-size: 0.9rem;
         }
         .store-name-btn, .wa-button {
-            font-size: 0.8rem;
-            padding: 6px 12px;
+            font-size: 0.9rem;
+            padding: 8px 16px;
         }
         .transfer-highlight {
             font-size: 1.2rem;
-            padding: 0.4rem;
+            padding: 0.8rem;
+            margin: 0.8rem 0;
         }
         .copy-button {
-            font-size: 0.65rem;
+            font-size: 0.7rem;
         }
         .alias-container {
             white-space: nowrap;
             display: inline-flex;
             align-items: center;
-            gap: 4px;
+            gap: 6px;
             flex-wrap: wrap;
             justify-content: center;
         }
         .alias-small {
-            font-size: 0.7rem;
+            font-size: 0.75rem;
         }
         .fecha-grande {
             font-size: 1.8rem;
+            margin: 0.5rem 0;
         }
         .comentario-bot {
-            font-size: 0.7rem;
+            font-size: 0.8rem;
+            margin-bottom: 0.5rem;
+        }
+        .big-emoji {
+            font-size: 5rem;
+            margin: 1.2rem;
+            text-shadow: 0 0 15px #fff;
+            display: block;
         }
     </style>
 </head>
@@ -535,7 +550,6 @@
             else if (elem.msRequestFullscreen) elem.msRequestFullscreen();
         }
         
-        // Limpiar participantes
         localStorage.removeItem("cuestion_participantes");
         
         // ---------- AUDIO: BEAT 8-BITS 110 BPM ----------
@@ -641,7 +655,6 @@
             currentStep = 0;
         }
         
-        // Sonidos auxiliares
         function playBeep(freq=880, duration=0.05, type='sine') {
             if(!audioCtx) initAudio();
             if(!audioCtx) return;
@@ -703,7 +716,7 @@
             osc.stop(now + 0.25);
         }
         
-        // ---------- GENERACIÓN DE CÓDIGO MÁS CORTA ----------
+        // ---------- GENERACIÓN DE CÓDIGO ----------
         const terminalDiv = document.getElementById('terminalOutput');
         const progressFill = document.getElementById('progressBarFill');
         
@@ -869,7 +882,7 @@ le robé una noche.`;
             }, 1000);
         });
         
-        // ---------- CAPAS EN CASCADA ----------
+        // ---------- CAPAS EN CASCADA (con mejor distribución) ----------
         function showCascade(step, finalCallback) {
             const existing = document.querySelector('.cascade-layer');
             if(existing) existing.remove();
@@ -916,7 +929,7 @@ le robé una noche.`;
                 content.innerHTML = `<div class="comentario-bot">felicitaciones, no sos un bot jajajaja</div>
                                     <div class="fecha-grande">09 DE MAYO - 20HS</div>
                                     <div class="countdown">${updateCountdown()}</div>
-                                    <a class="maps-link" href="https://maps.app.goo.gl/PfAJwYZ6i2dsrbbTA" target="_blank">[ VER UBICACIÓN]</a>
+                                    <a class="maps-link" href="https://maps.app.goo.gl/PfAJwYZ6i2dsrbbTA" target="_blank">[ VER MAPA ]</a>
                                     <br><button class="closeCascade">[ CERRAR ]</button>`;
                 const countdownSpan = content.querySelector('.countdown');
                 const intervalCd = setInterval(() => {
@@ -938,6 +951,7 @@ le robé una noche.`;
             });
         }
         
+        // PISTA con emojis mucho más grandes
         function showPista() {
             const existing = document.querySelector('.cascade-layer');
             if(existing) existing.remove();
@@ -945,13 +959,14 @@ le robé una noche.`;
             layer.className = 'cascade-layer';
             layer.innerHTML = `<div class="cascade-content">
                 <div class="big-emoji">😰🌞</div>
-                <p style="font-size:1.3rem; font-weight:bold;">adivinate esa</p>
+                <p style="font-size:1.5rem; font-weight:bold;">adivinate esa</p>
                 <button class="closePista">[ CERRAR ]</button>
             </div>`;
             document.body.appendChild(layer);
             layer.querySelector('.closePista').addEventListener('click', () => layer.remove());
         }
         
+        // INSCRIPCIÓN con mejor distribución
         function showInscripcion() {
             const existing = document.querySelector('.cascade-layer');
             if(existing) existing.remove();
@@ -960,9 +975,9 @@ le robé una noche.`;
             layer.innerHTML = `<div class="cascade-content">
                 <h2>KIERO ESTAR EN LA CUESTIÓN</h2>
                 <div class="transfer-highlight">
-                    1. TRANSFERIR <strong style="font-size:1.4rem;">$4.000</strong><br>
+                    1. TRANSFERIR <strong style="font-size:1.6rem;">$4.000</strong><br>
                     <div class="alias-container">
-                        <span style="font-family:monospace;">alias: <code style="background:#000; padding:0.2rem 0.4rem;">ellorenzopa.banda</code></span>
+                        <span style="font-family:monospace;">alias: <code style="background:#000; padding:0.2rem 0.5rem;">ellorenzopa.banda</code></span>
                         <span class="alias-small">(Mafalda)</span>
                     </div>
                     <button id="copyAliasBtn" class="copy-button">[copiar alias]</button>
@@ -971,7 +986,7 @@ le robé una noche.`;
                 <p><strong>2. Dejar tu nombre:</strong></p>
                 <input type="text" id="nombreParticipante" placeholder="nombre" autocomplete="off">
                 <button id="guardarNombreBtn" class="store-name-btn">[ GUARDAR ]</button>
-                <div id="feedbackNombre" style="font-size:0.7rem; margin-top:5px;"></div>
+                <div id="feedbackNombre" style="font-size:0.75rem; margin-top:5px;"></div>
                 <p><strong>3. NOS VEMOS AHI!</strong></p>
                 <a id="whatsappLink" href="https://whatsapp.com/channel/0029VbBstkwAYlUR7b7wuI1j" target="_blank" class="wa-button">[ CANAL WHATSAPP ]</a>
                 <button id="closeInscripcion" style="margin-top:20px;">[ CERRAR ]</button>
@@ -1020,7 +1035,7 @@ le robé una noche.`;
             layer.className = 'cascade-layer';
             layer.innerHTML = `<div class="cascade-content">
                 <h2>🏆 PREMIO A LA CURIOSIDAD!!!</h2>
-                <p style="font-size:1rem;">el cronograma va a estar en el baño</p>
+                <p style="font-size:1.1rem;">el cronograma va a estar en el baño</p>
                 <p style="font-family:monospace; margin-top:0.5rem;">aaa y los emojis son un nombre</p>
                 <button id="closeSecret">[ CERRAR ]</button>
             </div>`;
