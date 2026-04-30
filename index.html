@@ -463,20 +463,28 @@
             font-size: 1.2rem;
             padding: 0.8rem;
             margin: 0.8rem 0;
+            word-break: break-word;
         }
         .copy-button {
             font-size: 0.7rem;
+            background: transparent;
+            border: none;
+            color: #0f0;
+            text-decoration: underline;
+            cursor: pointer;
+            margin-left: 6px;
         }
         .alias-container {
-            white-space: nowrap;
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
+            display: flex;
             flex-wrap: wrap;
+            align-items: center;
             justify-content: center;
+            gap: 6px;
+            margin: 0.5rem 0;
         }
         .alias-small {
             font-size: 0.75rem;
+            white-space: nowrap;
         }
         .fecha-grande {
             font-size: 1.8rem;
@@ -491,6 +499,36 @@
             margin: 1.2rem;
             text-shadow: 0 0 15px #fff;
             display: block;
+        }
+
+        /* Ajuste para móviles muy estrechos */
+        @media (max-width: 480px) {
+            .cascade-content {
+                padding: 1rem;
+                width: 85%;
+            }
+            .transfer-highlight {
+                font-size: 1rem;
+                padding: 0.5rem;
+            }
+            .alias-container {
+                flex-direction: column;
+                gap: 4px;
+            }
+            .alias-small {
+                white-space: normal;
+            }
+            .copy-button {
+                margin-left: 0;
+                margin-top: 4px;
+            }
+            .store-name-btn, .wa-button {
+                padding: 6px 12px;
+                font-size: 0.8rem;
+            }
+            input {
+                width: 90%;
+            }
         }
     </style>
 </head>
@@ -575,7 +613,6 @@
             return audioCtx;
         }
         
-        // Pequeño "silence" para activar el motor de audio en iOS
         function primeAudioContext() {
             if (!audioCtx) return;
             if (audioCtx.state === 'running') return;
@@ -681,7 +718,6 @@
             currentStep = 0;
         }
         
-        // Manejo de visibilidad de la página
         function handleVisibilityChange() {
             if (document.hidden) {
                 if (beatInterval) stopBeat();
@@ -698,7 +734,6 @@
         
         document.addEventListener('visibilitychange', handleVisibilityChange);
         
-        // Funciones auxiliares de sonido
         function playBeep(freq=880, duration=0.05, type='sine') {
             if(!audioCtx) initAudio();
             if(!audioCtx) return;
@@ -760,7 +795,7 @@
             osc.stop(now + 0.25);
         }
         
-        // ---------- GENERACIÓN DE CÓDIGO ----------
+        // ---------- GENERACIÓN DE CÓDIGO (idéntica) ----------
         const terminalDiv = document.getElementById('terminalOutput');
         const progressFill = document.getElementById('progressBarFill');
         
@@ -825,7 +860,7 @@
             addLine();
         }
         
-        // ---------- POESÍA ----------
+        // ---------- POESÍA (idéntica) ----------
         const rawPoem = `y al final, 
 un poco más tarde ke ahora,
 cuando estés volviendo a tu casa,
@@ -871,7 +906,7 @@ le robé una noche.`;
             typeChar();
         }
         
-        // ---------- FLUJO PRINCIPAL (CON AUDIO ASEGURADO) ----------
+        // ---------- FLUJO PRINCIPAL ----------
         const lightScreen = document.getElementById('lightScreen');
         const lightBtn = document.getElementById('lightSwitchBtn');
         const loadingScreenElem = document.getElementById('loadingScreen');
@@ -880,11 +915,9 @@ le robé una noche.`;
         
         lightBtn.addEventListener('click', async (e) => {
             requestFullscreen();
-            // INICIALIZAR Y REANUDAR AUDIO FUERZOSAMENTE
             initAudio();
             if (audioCtx.state !== 'running') {
                 await audioCtx.resume();
-                // "Silencio" para activar el motor en iOS
                 primeAudioContext();
             }
             playBeep(300, 0.1, 'triangle');
@@ -1019,7 +1052,7 @@ le robé una noche.`;
             layer.querySelector('.closePista').addEventListener('click', () => layer.remove());
         }
         
-        // INSCRIPCIÓN
+        // INSCRIPCIÓN CON ALIAS RESPONSIVE
         function showInscripcion() {
             const existing = document.querySelector('.cascade-layer');
             if(existing) existing.remove();
@@ -1032,8 +1065,8 @@ le robé una noche.`;
                     <div class="alias-container">
                         <span style="font-family:monospace;">alias: <code style="background:#000; padding:0.2rem 0.5rem;">ellorenzopa.banda</code></span>
                         <span class="alias-small">(Mafalda)</span>
+                        <button id="copyAliasBtn" class="copy-button">[copiar alias]</button>
                     </div>
-                    <button id="copyAliasBtn" class="copy-button">[copiar alias]</button>
                     <span id="copyFeedback" class="copy-feedback"></span>
                 </div>
                 <p><strong>2. Aki tu nombre:</strong></p>
@@ -1146,7 +1179,6 @@ le robé una noche.`;
             });
         });
         
-        // Primer clic global: activar audio (solo para navegadores que lo requieran)
         document.body.addEventListener('click', () => {
             if (audioCtx && audioCtx.state === 'suspended') {
                 audioCtx.resume().then(() => primeAudioContext());
